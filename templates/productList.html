@@ -1,0 +1,86 @@
+{% extends 'mainFrame.html' %}
+{% block title %}散标列表 - 投标小裁判{% endblock %}
+{% block pageContent %}
+    {% if pList %}
+        <div class="panel panel-blue">
+            <div class="panel-heading">
+                <h2 class="panel-title" align="center">散标列表</h2>
+            </div>
+            <form action="/calculate/" method="post">
+                <div class="panel-body">
+                    <table id="pList" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>标的标题</th>
+                            <th>魔镜等级</th>
+                            <th>借款金额</th>
+                            <th>借款利率（%）</th>
+                            <th>借款期限</th>
+                            <th>还款方式</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for item in pList %}
+                            <tr>
+                                <td><input type="hidden" name="ListingId" value={{ item.ListingId }}>
+                                    <input type="hidden" name="Title" value={{ item.Title }}>
+                                    {{ item.Title }}</td>
+                                <td><input type="hidden" name="CreditCode" value={{ item.CreditCode }}>
+                                    {{ item.CreditCode }}</td>
+                                <td>{{ item.Amount }}</td>
+                                <td><input type="hidden" name="Rate" value={{ item.Rate }}>
+                                    {{ item.Rate }}</td>
+                                <td><input type="hidden" name="Months" value={{ item.Months }}>
+                                    {{ item.Months }}</td>
+                                <td>{% if item.PayWay %}等额本息(按月还款){% else %}一次性还本付息{% endif %}</td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td><p>暂时没有信息，请稍后再试</p></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <table id="amount" class="table">
+                        <tr>
+                            <td><input type="text" name="inputAmount" value="请输入拟投入金额" onclick="clearText(this)"
+                                       onblur="checkText(this)" class="form-control margin-buttom-20" required></td>
+                            <td>
+                                <button type="submit" class="btn btn-warning">开始计算</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+        </div>
+    {% endif %}
+
+{% endblock %}
+{% block javascipt %}
+    {{ block.super }}
+    <script>
+        $(function () {
+            $('#pList').DataTable({
+                "paging": false,
+                "lengthChange": false,
+                "lengthMenu": [30, 50, 100, 150],
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "processing": true
+            });
+        });
+        function clearText(id) {
+            if (id.value == "请输入拟投入金额") {
+                id.value = "";
+            }
+        }
+        function checkText(id) {
+            if (id.value == "") {
+                id.value = "请输入拟投入金额";
+            }
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'mainFrame.html' %}
+{% block title %}计算结果 - 投标小裁判{% endblock %}
+{% block pageContent %}
+    {% if resultList %}
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <h2 class="panel-title" align="center">计算结果：在投入金额为{{ inputAmount }}元的情况下</h2>
+            </div>
+            <div class="panel-body">
+                <table id="mList" class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>标的标题</th>
+                        <th>借款期限</th>
+                        <th>魔镜等级</th>
+                        <th>借款利率（%）</th>
+                        <th>相对投资效率</th>
+                        <th>理想收益（元）</th>
+                        <th>平均收益（元）</th>
+                        <th>投资金额调整（元）</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in resultList %}
+                        <tr>
+                            <td>{{ item.Title }}</td>
+                            <td>{{ item.Months }}</td>
+                            <td>{{ item.CreditCode }}</td>
+                            <td>{{ item.Rate }}</td>
+                            <td>{{ item.relativeEff }}</td>
+                            <td>{{ item.expReturn }}</td>
+                            <td>{{ item.avgReturn }}</td>
+                            <td>{{ item.adjuestedFund }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="panel-footer">
+                <h3>>>说明<<</h3>
+                <p></p>
+                <p>四个具有收益参考价值的指标：相对投资效率，理想收益，平均收益，投资金额调整。</p>
+                <p>相对效率越高，越具有投资价值。一个标是有效的, 是指它达到了100%的相对效率。而一个标达到100%的相对效率是指它与其他标相比，没有理由认为它在此种投入下达到这种收益是不够好的。</p>
+                <p>理想收益：在不发生坏账、逾期等情况下，最终将取得的收益。</p>
+                <p>平均收益：即收益期望，考虑风险因素下，一个预期的收益，用于比较。综合风险和收益因素，同一期限下，平均收益越高的标，越具有投资价值。</p>
+                <p>投资金额调整：对于未达到1(相对有效)的标，可能的原因有两个：1. 投入金额盈余。2.收益不足。如果是投入盈余，就要减少投资金额，这就是投资金额调整。
+                <p>若表中都为0，说明是收益不足造成的</p>
+                <p>收益项请在同样投资期限下比较。</p>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+{% block javascipt %}
+    {{ block.super }}
+    <script>
+        $(function () {
+            $('#mList').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "lengthMenu": [10, 20, 50, 100],
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "processing": true,
+                "aaSorting": [[6, 'desc'], [4, 'desc']]
+            });
+        });
+    </script>
+{% endblock %}

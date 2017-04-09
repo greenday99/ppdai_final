@@ -1,0 +1,101 @@
+{# templates/mainFrame.html #}
+<!-- === BEGIN HEADER === -->
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en"> <!--<![endif]-->
+<head>
+    <!-- Title -->
+    <title>{% block title %}投标小裁判{% endblock %}</title>
+    <!-- Meta -->
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    {% load static %}
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href={% static "css/bootstrap.css" %} rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href={% static "css/animate.css" %} rel="stylesheet">
+    <link rel="stylesheet" href={% static "css/font-awesome.css" %} rel="stylesheet">
+    <link rel="stylesheet" href={% static "css/nexus.css" %} rel="stylesheet">
+    <link rel="stylesheet" href={% static "css/responsive.css" %} rel="stylesheet">
+    <link rel="stylesheet" href={% static "css/custom.css" %} rel="stylesheet">
+    <!-- DataTables -->
+    <link rel="stylesheet" href={% static "datatables/dataTables.bootstrap.css" %} rel="stylesheet">
+    <!-- Google Fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,300" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="pre_header" class="visible-lg"></div>
+<div id="header" class="container">
+    <div class="row">
+        <!-- Logo -->
+        <div class="logo">
+            <a href="/introduction" title="">
+                <img src={% static "img/logo.png" %} alt="Logo" width="470px"/>
+            </a>
+        </div>
+        <!-- End Logo -->
+        <!-- Top Menu -->
+        <div class="col-md-12 margin-top-30">
+            <div id="hornav" class="pull-right visible-lg">
+                <ul class="nav navbar-nav">
+                    <li><a href="/productList">散标列表</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <!-- End Top Menu -->
+    </div>
+</div>
+<!-- === END HEADER === -->
+<!-- === BEGIN CONTENT === -->
+<div id="content" class="container">
+    <div class="row margin-top-30">
+        {% block pageContent %}
+            <p>暂无相关信息，请刷新重试。</p>
+        {% endblock %}
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!-- Footer Menu -->
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div id="copyright" class="col-md-12">
+                <p>2017拍拍贷互联网金融训练营-强迫症患者章漫钰小组-第四周项目作业</p>
+                <p>组员：顾漫青 | 章洁 | 姜冰钰</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- End Footer Menu -->
+</div>
+</div>
+<!-- JS -->
+{% block javascipt %}
+    <script type="text/javascript" src={% static "js/jquery.min.js" %} type="text/javascript"></script>
+    <script type="text/javascript" src={% static "js/bootstrap.min.js" %} type="text/javascript"></script>
+    <script type="text/javascript" src={% static "js/scripts.js" %}></script>
+    <!-- Isotope - Portfolio Sorting -->
+    <script type="text/javascript" src={% static "js/jquery.isotope.js" %} type="text/javascript"></script>
+    <!-- Mobile Menu - Slicknav -->
+    <script type="text/javascript" src={% static "js/jquery.slicknav.js" %} type="text/javascript"></script>
+    <!-- Animate on Scroll-->
+    <script type="text/javascript" src={% static "js/jquery.visible.js" %} charset="utf-8"></script>
+    <!-- Slimbox2-->
+    <script type="text/javascript" src={% static "js/slimbox2.js" %} charset="utf-8"></script>
+    <!-- Modernizr -->
+    <script src={% static "js/modernizr.custom.js" %} type="text/javascript"></script>
+    <!-- DataTables -->
+    <script src={% static "datatables/jquery.dataTables.min.js" %} type="text/javascript"></script>
+    <script src={% static "datatables/dataTables.bootstrap.min.js" %} type="text/javascript"></script>
+    <!-- End JS -->
+{% endblock %}
+</body>
+</html>
+<!-- === END FOOTER === -->
