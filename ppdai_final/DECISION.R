@@ -40,7 +40,7 @@ EQ<-apply(y*R,1,sum)
 e<- dea(x,y[,1],RTS="crs",ORIENTATION="in",SLACK=TRUE)
 e_vrs<- dea(x,y[,1],RTS="vrs",ORIENTATION="in",SLACK=TRUE)
 e1_vrs<- dea(x[,1],y[,1],RTS="vrs",ORIENTATION="in",SLACK=TRUE)
-a<-data.frame(ListingId=X$ListingId,Title=X$Title,inputAmount=X$inputAmount,Months=X$Months,CreditCode=X$CreditCode,Rate=X$Rate,relativeEff=e$eff,expReturn=y[,1],avgReturn=EQ,adjuestedFund=e1_vrs$sx[1])
+a<-data.frame(ListingId=X$ListingId,Title=X$Title,inputAmount=X$inputAmount,Months=X$Months,CreditCode=X$CreditCode,Rate=X$Rate,relativeEff=e$eff,expReturn=round(y[,1],2),avgReturn=round(EQ,2),adjuestedFund=e1_vrs$sx[1])
 b<-a[order(a$avgReturn,decreasing = TRUE),]
 return(b)}
 

@@ -8,6 +8,15 @@
             </div>
             <form action="/calculate/" method="post">
                 <div class="panel-body">
+                    <table id="amount" class="table">
+                        <tr>
+                            <td><input type="text" name="inputAmount" value="请输入拟投入金额" onclick="clearText(this)"
+                                       onblur="checkText(this)" class="form-control margin-buttom-20" required></td>
+                            <td>
+                                <button type="submit" class="btn btn-warning">开始计算</button>
+                            </td>
+                        </tr>
+                    </table>
                     <table id="pList" class="table table-bordered table-hover">
                         <thead>
                         <tr>
@@ -41,15 +50,6 @@
                             </tr>
                         {% endfor %}
                         </tbody>
-                    </table>
-                    <table id="amount" class="table">
-                        <tr>
-                            <td><input type="text" name="inputAmount" value="请输入拟投入金额" onclick="clearText(this)"
-                                       onblur="checkText(this)" class="form-control margin-buttom-20" required></td>
-                            <td>
-                                <button type="submit" class="btn btn-warning">开始计算</button>
-                            </td>
-                        </tr>
                     </table>
                 </div>
             </form>
